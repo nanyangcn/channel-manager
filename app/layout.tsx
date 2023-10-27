@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import TopBar from 'components/TopBar';
+import Divider from 'components/Divider';
+
+const nunito = Nunito({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={nunito.className}>
+        <div className="flex h-screen w-screen items-center justify-center bg-slate-500">
+          <main className="flex h-[730px] w-[920px] flex-col rounded-2xl bg-white">
+            <TopBar />
+            <Divider />
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
   );
 }
