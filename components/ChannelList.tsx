@@ -1,6 +1,7 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import Divider from './Divider';
+import ToggleButton from './ToggleButton';
 
 interface ChannelListProps {
   hotelId: string;
@@ -36,25 +37,15 @@ function ListBody() {
   return (
     <div className="flex flex-col">
       {channelList.map((channel) => (
-        <>
+        <Fragment key={channel.id}>
           <div className="flex gap-4 px-4 py-3">
             <p className="shrink grow basis-0 text-sm font-normal leading-tight text-slate-700">
               {channel.name}
             </p>
-            {channel.visibility
-              ? (
-                <div className="relative h-5 w-9 rounded-[100px] bg-blue-600">
-                  <div className="absolute left-[18px] top-[2px] h-4 w-4 rounded-full bg-white" />
-                </div>
-              )
-              : (
-                <div className="relative h-5 w-9 rounded-[100px] bg-slate-300">
-                  <div className="absolute left-[2px] top-[2px] h-4 w-4 rounded-full bg-white" />
-                </div>
-              )}
+            <ToggleButton isActive={channel.visibility} />
           </div>
           <Divider />
-        </>
+        </Fragment>
       ))}
     </div>
   );
