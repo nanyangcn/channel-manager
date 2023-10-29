@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import getHotelById from 'actions/getHotelById';
 import useHotelStore from 'hooks/useHotelStore';
 import { useEffect } from 'react';
@@ -38,7 +38,7 @@ function DropList({ isOpen, setIsOpen, hotels }: DropListProps) {
         `absolute inset-x-0 top-full mt-1 flex flex-col divide-y-[1px] divide-accent
         rounded-lg border border-border-primary bg-secondary
         shadow overflow-hidden transition-all
-        dark:bg-accent-dark dark:border-border-primary-dark dark:divide-accent-dark`,
+        dark:bg-accent-dark dark:border-border-primary-dark dark:divide-additional-dark`,
         isOpen ? 'opacity-100' : 'opacity-0 invisible',
       )}
     >
