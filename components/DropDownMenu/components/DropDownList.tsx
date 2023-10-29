@@ -36,7 +36,9 @@ function DropList({ isOpen, setIsOpen, hotels }: DropListProps) {
     <div
       className={twMerge(
         `absolute inset-x-0 top-full mt-1 flex flex-col divide-y-[1px] divide-accent
-        rounded-lg border border-border-primary bg-secondary shadow overflow-hidden transition-all`,
+        rounded-lg border border-border-primary bg-secondary
+        shadow overflow-hidden transition-all
+        dark:bg-accent-dark dark:border-border-primary-dark dark:divide-accent-dark`,
         isOpen ? 'opacity-100' : 'opacity-0 invisible',
       )}
     >
@@ -45,12 +47,15 @@ function DropList({ isOpen, setIsOpen, hotels }: DropListProps) {
           key={hotelItem.id}
           type="button"
           className={twMerge(
-            'flex h-10 items-center py-2 pl-3 pr-2 transition-all hover:bg-accent',
+            'flex h-10 items-center py-2 pl-3 pr-2 transition-all hover:bg-accent hover:dark:bg-additional-dark',
             isOpen ? 'opacity-100' : 'opacity-0 h-0',
           )}
           onClick={() => handleClick(hotelItem)}
         >
-          <p className="shrink grow basis-0 pr-9 text-base font-normal leading-normal text-text-primary">
+          <p
+            className="shrink grow basis-0 pr-9 text-left text-base font-normal leading-normal
+          text-text-primary dark:text-text-primary-dark"
+          >
             {hotelItem.name}
           </p>
         </button>

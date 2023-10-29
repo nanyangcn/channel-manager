@@ -19,11 +19,15 @@ function DropDownButton({
     <div className="relative flex flex-col">
       <button
         type="button"
-        className="flex h-10 items-center gap-3 rounded-lg
-            border border-border-primary py-2 pl-3 pr-2 shadow"
+        className="flex h-10 items-center gap-3 rounded-lg border border-border-primary
+          bg-secondary py-2 pl-3 pr-2 shadow
+          dark:border-border-primary-dark dark:bg-additional-dark dark:shadow-none"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <p className="shrink grow basis-0 text-base font-normal leading-normal text-text-primary">
+        <p
+          className="shrink grow basis-0 text-left text-base font-normal
+        leading-normal text-text-primary dark:text-text-primary-dark"
+        >
           {hotel?.name ?? 'Select a Hotel'}
         </p>
         <div

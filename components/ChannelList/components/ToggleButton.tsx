@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { VscLoading } from 'react-icons/vsc';
 import { twMerge } from 'tailwind-merge';
 
 import useHotelStore from 'hooks/useHotelStore';
@@ -52,14 +52,14 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
       {(isLoading || isPending)
         && (
         <div className="flex h-5 w-5 animate-spin items-center">
-          <Image src="/indicator/loading.svg" alt="Loading" fill />
+          <VscLoading size={20} className="dark:text-text-primary-dark" />
         </div>
         )}
       <button
         type="button"
         className={twMerge(
           'relative h-5 w-9 rounded-[100px]',
-          state ? 'bg-primary' : 'bg-disable',
+          state ? 'bg-primary dark:bg-primary-dark' : 'bg-disable dark:bg-disable-dark',
           isDisabled ? 'cursor-not-allowed' : 'cursor-pointer',
         )}
         disabled={isDisabled}
@@ -67,7 +67,7 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
       >
         <div
           className={twMerge(
-            'absolute left-[18px] top-[2px] h-4 w-4 rounded-full bg-secondary transition-all',
+            'absolute left-[18px] top-[2px] h-4 w-4 rounded-full bg-secondary transition-all dark:bg-text-primary-dark',
             state ? 'left-[18px]' : 'left-[2px]',
           )}
         />
