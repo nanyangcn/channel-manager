@@ -2,7 +2,7 @@ import React from 'react';
 
 function Divider() {
   return (
-    <div className="h-px bg-slate-200" />
+    <div className="bg-accent h-px shrink-0" />
   );
 }
 

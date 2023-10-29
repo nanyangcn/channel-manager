@@ -4,6 +4,8 @@ import './globals.css';
 
 import TopBar from 'components/TopBar';
 import Divider from 'components/Divider';
+import QueryProvider from 'providers/QueryProvider';
+import Main from 'components/Main';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -20,13 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <div className="flex h-screen w-screen items-center justify-center bg-slate-500">
-          <main className="flex h-[730px] w-[920px] flex-col rounded-2xl bg-white">
+        <QueryProvider>
+          <Main>
             <TopBar />
             <Divider />
             {children}
-          </main>
-        </div>
+          </Main>
+        </QueryProvider>
       </body>
     </html>
   );
