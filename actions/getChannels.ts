@@ -1,7 +1,7 @@
 'use server';
 
 import { closeMongo, connectMongo, getDb } from 'libs/db';
-import { Channel } from 'types/channels';
+import { Channel } from 'types/channel';
 
 const collectionName = 'channels';
 
