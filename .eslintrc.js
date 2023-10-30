@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
   extends: [
     'eslint:recommended',
@@ -15,6 +16,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:@next/next/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
+    'plugin:jest-dom/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -29,6 +31,14 @@ module.exports = {
     '@typescript-eslint',
     'react',
     '@tanstack/query',
+    'testing-library',
+    'jest-dom',
+  ],
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': 1,

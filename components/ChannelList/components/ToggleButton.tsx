@@ -14,7 +14,9 @@ interface ToggleButtonProps {
 
 function ToggleButton({ channelId }: ToggleButtonProps) {
   const { hotel, setHotel, isLoading } = useHotelStore();
-  const [state, setState] = useState<boolean | null>(null);
+  const [state, setState] = useState<boolean | null>(
+    typeof hotel?.channels.includes(channelId) === 'boolean' ? hotel?.channels.includes(channelId) : null,
+  );
 
   const { isPending, mutate } = useMutation({
     mutationFn: putHotelById,
@@ -47,11 +49,12 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
   };
 
   const isDisabled = isLoading || isPending || state === null;
+
   return (
     <div className="flex items-center gap-2">
       {(isLoading || isPending)
         && (
-        <div className="flex h-5 w-5 animate-spin items-center">
+        <div className="flex h-5 w-5 animate-spin items-center" role="status">
           <VscLoading size={20} className="dark:text-text-primary-dark" />
         </div>
         )}
