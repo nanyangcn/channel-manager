@@ -53,8 +53,11 @@ function DropList({ isOpen, setIsOpen, hotels }: DropListProps) {
           onClick={() => handleClick(hotelItem)}
         >
           <p
-            className="shrink grow basis-0 pr-9 text-left text-base font-normal leading-normal
-          text-text-primary dark:text-text-primary-dark"
+            className={twMerge(
+              `shrink grow basis-0 pr-9 transition-all text-left text-base font-normal leading-normal
+            text-text-primary dark:text-text-primary-dark`,
+              isOpen ? 'opacity-100' : 'opacity-0 scale-y-0',
+            )}
           >
             {hotelItem.name}
           </p>
