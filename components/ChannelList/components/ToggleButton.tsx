@@ -14,9 +14,7 @@ interface ToggleButtonProps {
 
 function ToggleButton({ channelId }: ToggleButtonProps) {
   const { hotel, setHotel, isLoading } = useHotelStore();
-  const [state, setState] = useState<boolean | null>(
-    typeof hotel?.channels.includes(channelId) === 'boolean' ? hotel?.channels.includes(channelId) : null,
-  );
+  const [isOn, setIsOn] = useState<boolean | null>(hotel?.channels.includes(channelId) ?? null);
 
   const { isPending, mutate } = useMutation({
     mutationFn: putHotelById,
@@ -29,13 +27,13 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
           : [...hotel.channels, channelId],
       };
       setHotel(newHotel);
-      setState((prev) => !prev);
+      setIsOn((prev) => !prev);
     },
   });
 
   useEffect(() => {
     if (!hotel?.channels) return;
-    setState(hotel?.channels.includes(channelId) ?? false);
+    setIsOn(hotel?.channels.includes(channelId) ?? false);
   }, [hotel?.channels, channelId]);
 
   const handleToggle = () => {
@@ -48,7 +46,7 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
     });
   };
 
-  const isDisabled = isLoading || isPending || state === null;
+  const isDisabled = isLoading || isPending || isOn === null;
 
   return (
     <div className="flex items-center gap-2">
@@ -62,7 +60,7 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
         type="button"
         className={twMerge(
           'relative h-5 w-9 rounded-[100px]',
-          state ? 'bg-primary dark:bg-primary-dark' : 'bg-disable dark:bg-disable-dark',
+          isOn ? 'bg-primary dark:bg-primary-dark' : 'bg-disable dark:bg-disable-dark',
           isDisabled ? 'cursor-not-allowed' : 'cursor-pointer',
         )}
         disabled={isDisabled}
@@ -71,7 +69,7 @@ function ToggleButton({ channelId }: ToggleButtonProps) {
         <div
           className={twMerge(
             'absolute left-[18px] top-[2px] h-4 w-4 rounded-full bg-secondary transition-all dark:bg-text-primary-dark',
-            state ? 'left-[18px]' : 'left-[2px]',
+            isOn ? 'left-[18px]' : 'left-[2px]',
           )}
         />
       </button>
